@@ -37,3 +37,10 @@ read HEAT_TENANT_ID
 export HEAT_TENANT_ID=${HEAT_TENANT_ID}
 export HEAT_URL=https://api.rs-heat.com/v1/${HEAT_TENANT_ID}/
 
+#
+# Setup environment variables for Cloud Load Balancers
+#
+export CLOUD_LOADBALANCERS_USERNAME=$OS_USERNAME
+export CLOUD_LOADBALANCERS_API_KEY=$(keystone token-get | egrep ' id ' | awk '{print $4}')
+export CLOUD_LOADBALANCERS_REGION=$OS_REGION_NAME
+

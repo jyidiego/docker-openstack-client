@@ -14,6 +14,8 @@ RUN sudo pip install python-swiftclient
 RUN sudo pip install python-heatclient
 RUN sudo pip install python-cinderclient
 RUN sudo pip install python-keystoneclient
+RUN sudo pip install pyrax
+RUN sudo git clone https://github.com/calebgroom/clb.git;cd clb;sudo python setup.py install
 RUN sudo mkdir /root/.ssh
 ADD . /root/.ssh
 RUN sudo mkdir /run/sshd
