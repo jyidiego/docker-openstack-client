@@ -6,8 +6,6 @@ RUN apt-get -y update
 RUN apt-get -y install curl build-essential libxml2-dev libxslt-dev git
 RUN apt-get -y install python openssh-server
 RUN curl https://pypi.python.org/packages/source/s/setuptools/setuptools-1.1.6.tar.gz | tar xvzf -;cd setuptools-1.1.6;sudo python setup.py install
-# RUN tar xvzf setuptools-1.1.6.tar.gz
-# RUN sudo python setup.py install
 RUN sudo easy_install pip
 RUN sudo pip install python-novaclient
 RUN sudo pip install python-swiftclient
