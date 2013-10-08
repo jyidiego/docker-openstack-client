@@ -19,12 +19,14 @@ ENV HOME /root
 RUN git clone https://github.com/calebgroom/clb.git $HOME/clb;cd $HOME/clb;python setup.py install
 RUN git clone https://github.com/sstephenson/rbenv.git $HOME/.rbenv
 RUN git clone https://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+RUN $HOME/.rbenv/bin/rbenv install 1.9.3-p448
+RUN $HOME/.rbenv/versions/1.9.3-p448/bin/gem install rumm
 RUN mkdir $HOME/.ssh
 ADD ./authorized_keys $HOME/.ssh/
 RUN mkdir /run/sshd
 RUN echo >> $HOME/.bashrc
 RUN echo "# Added by docker setup" >> $HOME/.bashrc
-RUN echo "export PATH=$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims" >> $HOME/.bashrc
+RUN echo "export PATH=$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/.rbenv/versions/1.9.3-p448/bin" >> $HOME/.bashrc
 RUN echo "source openstackrc" >> $HOME/.bashrc
 ADD ./openstackrc $HOME/
 EXPOSE 2222
