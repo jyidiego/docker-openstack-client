@@ -4,7 +4,7 @@ MAINTAINER John Yi "john.yi@rackspace.com"
 
 RUN apt-get -y update
 RUN apt-get -y install curl build-essential libxml2-dev libxslt-dev git zlib1g-dev libssl-dev
-RUN apt-get -y install python openssh-server
+RUN apt-get -y install python openssh-server python-dev
 RUN curl https://pypi.python.org/packages/source/s/setuptools/setuptools-1.1.6.tar.gz | (cd /root;tar xvzf -;cd setuptools-1.1.6;python setup.py install)
 RUN easy_install pip
 RUN pip install python-novaclient
@@ -13,6 +13,7 @@ RUN pip install python-heatclient
 RUN pip install python-cinderclient
 RUN pip install python-keystoneclient
 RUN pip install pyrax
+RUN pip install ansible
 # Setting the $HOME variable here
 ENV HOME /root
 RUN git clone https://github.com/calebgroom/clb.git $HOME/clb;cd $HOME/clb;python setup.py install
