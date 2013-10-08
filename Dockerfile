@@ -3,7 +3,7 @@ FROM ubuntu:12.10
 MAINTAINER John Yi "john.yi@rackspace.com"
 
 RUN apt-get -y update
-RUN apt-get -y install curl build-essential libxml2-dev libxslt-dev git
+RUN apt-get -y install curl build-essential libxml2-dev libxslt-dev git zlib1g-dev
 RUN apt-get -y install python openssh-server
 RUN curl https://pypi.python.org/packages/source/s/setuptools/setuptools-1.1.6.tar.gz | (cd /root;tar xvzf -;cd setuptools-1.1.6;python setup.py install)
 RUN easy_install pip
@@ -23,7 +23,7 @@ ADD ./authorized_keys $HOME/.ssh/
 RUN mkdir /run/sshd
 RUN echo >> $HOME/.bashrc
 RUN echo "# Added by docker setup" >> $HOME/.bashrc
-RUN echo "export PATH=$PATH:$HOME/.rbenv/bin" >> $HOME/.bashrc
+RUN echo "export PATH=$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims" >> $HOME/.bashrc
 RUN echo "source openstackrc" >> $HOME/.bashrc
 ADD ./openstackrc $HOME/
 EXPOSE 2222
